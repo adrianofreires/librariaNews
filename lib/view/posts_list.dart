@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:libraria_news/controller/wordpress_data.dart';
 import 'components/post_tile.dart';
 import 'package:libraria_news/models/posts.dart';
 
@@ -8,23 +7,25 @@ class PostsList extends StatefulWidget {
   _PostsListState createState() => _PostsListState();
 }
 
-int page = 1;
-List<Posts> parsedPages(){
-  final parsed = WordPressData().getData('?page=$page') as List<dynamic>;
-  return parsed.map<Posts>((json) => Posts.fromJason(json)).toList();
-}
-
 class _PostsListState extends State<PostsList> {
-  List<Posts> posts = [];
+
+  Future<List<Posts>> futurePosts;
+
+  @override
+  void initState() {
+    super.initState();
+    futurePosts = Posts().parsedPages();
+  }
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemBuilder: (context, index) => PostTile(
-          image: posts[index].featuredMedia,
-          category: posts[index].categories,
-          date: posts[index].date,
-          title: posts[index].title,
-        )
+    return FutureBuilder<List<Posts>>(
+      future: futurePosts,
+      builder: (context, snapshot){
+        if(!snapshot.hasError) print(snapshot.error);
+        return snapshot.hasData
+            ? PostTile(posts: snapshot.data,)
+            : Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

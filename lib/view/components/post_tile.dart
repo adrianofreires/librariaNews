@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:libraria_news/models/posts.dart';
 
 class PostTile extends StatelessWidget {
 
-  String image, category, date, title;
+  final List<Posts> posts;
 
-  PostTile({this.image, this.date, this.category, this.title});
+  PostTile({Key key, this.posts});
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Image.network(image),
-      title: Row(
-        children: <Widget>[
-          Text(category),
-          Text(date),
-        ],
-      ),
-      subtitle: Text(title),
-      onTap: (){},
+    return ListView.builder(
+      itemBuilder: (context, index){
+        return Card(
+          child: Column(
+            children: [
+              Image.network(posts[index].featuredMedia),
+              Row(
+                children: [
+                  Text(posts[index].date),
+                ],
+              ),
+              Text(posts[index].title),
+            ],
+          ),
+        );
+      },
     );
   }
 }

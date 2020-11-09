@@ -2,14 +2,14 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 
-const String baseUrl = 'https://news.libraria.com.br/wp-json/wp/v2/';
+String baseUrl = 'https://news.libraria.com.br/wp-json/wp/v2/';
 
 class WordPressData {
 
 
-  Future getData(String selectedParameter) async {
+  Future getData(String selectedParameter, [int page]) async {
 
-    String requestUrl = baseUrl + selectedParameter;
+    String requestUrl = baseUrl + selectedParameter + page.toString();
 
     http.Response response = await http.get(requestUrl);
 
