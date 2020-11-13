@@ -9,7 +9,7 @@ class PostsList extends StatefulWidget {
 
 class _PostsListState extends State<PostsList> {
 
-  Future<List<Posts>> futurePosts;
+  Future<dynamic> futurePosts;
 
   @override
   void initState() {
@@ -18,7 +18,7 @@ class _PostsListState extends State<PostsList> {
   }
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Posts>>(
+    return FutureBuilder<dynamic>(
       future: futurePosts,
       builder: (context, snapshot){
         if(!snapshot.hasError) print(snapshot.error);
