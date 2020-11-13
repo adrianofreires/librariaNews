@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:libraria_news/view/posts_list.dart';
 
 void main() {
@@ -11,9 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-
+        primaryColor: Color(0xFF1e1e22),
+        accentColor: Color(0xFFe82822),
+        textTheme: GoogleFonts.interTextTheme(),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: PostsList(),

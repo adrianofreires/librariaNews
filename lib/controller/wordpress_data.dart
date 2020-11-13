@@ -12,8 +12,8 @@ class WordPressData {
     return parsed.map<Posts>((json) => Posts.fromJson(json)).toList();
   }
 
-  Future getData(String selectedParameter) async {
-    String requestUrl = baseUrl + selectedParameter;
+  Future getData(String selectedParameter, [int page]) async {
+    String requestUrl = baseUrl + selectedParameter + page.toString();
 
     http.Response response = await http.get(requestUrl);
 

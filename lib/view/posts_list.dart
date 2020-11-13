@@ -18,14 +18,17 @@ class _PostsListState extends State<PostsList> {
   }
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<dynamic>(
-      future: futurePosts,
-      builder: (context, snapshot){
-        if(!snapshot.hasError) print(snapshot.error);
-        return snapshot.hasData
-            ? PostTile(posts: snapshot.data,)
-            : Center(child: CircularProgressIndicator());
-      },
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+      body: FutureBuilder<dynamic>(
+        future: futurePosts,
+        builder: (context, snapshot){
+          if(!snapshot.hasError) print(snapshot.error);
+          return snapshot.hasData
+              ? PostTile(posts: snapshot.data,)
+              : Center(child: CircularProgressIndicator());
+        },
+      ),
     );
   }
 }

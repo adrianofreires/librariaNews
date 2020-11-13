@@ -1,6 +1,6 @@
 import 'package:libraria_news/controller/wordpress_data.dart';
 
-final String endpoint = 'posts?page=1';
+final String endpoint = 'posts?page=';
 final int currentPage = 1;
 
 class Posts {
@@ -21,7 +21,7 @@ class Posts {
 
   Future<dynamic> parsedPages() async{
     WordPressData wordPressData = WordPressData();
-    final parsed = await wordPressData.getData(endpoint);
+    final parsed = await wordPressData.getData(endpoint, currentPage);
     print(parsed);
     return parsed;
   }
