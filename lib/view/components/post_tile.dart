@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:libraria_news/models/categories.dart';
 import 'package:libraria_news/models/posts.dart';
 
 class PostTile extends StatelessWidget {
   final List<Posts> posts;
+  final List<Categories> categories;
 
-  PostTile({Key key, this.posts});
+  PostTile({Key key, this.posts, this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,9 @@ class PostTile extends StatelessWidget {
           color: Colors.black,
           child: Column(
             children: [
-              Image.network(posts[index].featuredMedia),
+              ClipRRect(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+                  child: Image.network(posts[index].featuredMedia)),
               SizedBox(
                 height: 8.0,
               ),
@@ -26,6 +30,12 @@ class PostTile extends StatelessWidget {
                   children: [
                     Row(
                       children: [
+                        Text(
+                          posts[index].categories.toString(),
+                          style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                          ),
+                        ),
                         Text(
                           posts[index].date,
                           style: TextStyle(

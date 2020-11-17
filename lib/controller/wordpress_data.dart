@@ -1,25 +1,12 @@
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-import 'package:libraria_news/models/posts.dart';
-
-String baseUrl = 'https://news.libraria.com.br/wp-json/wp/v2/';
 
 class WordPressData {
-
-  List<Posts> parsedData(String responseBody){
-    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-    return parsed.map<Posts>((json) => Posts.fromJson(json)).toList();
-  }
-
-  Future getData(String selectedParameter, [int page]) async {
-    String requestUrl = baseUrl + selectedParameter + page.toString();
-
-    http.Response response = await http.get(requestUrl);
+  Future getData(String selectedParameter) async {
+    http.Response response = await http.get(selectedParameter);
 
     if (response.statusCode == 200) {
       String data = response.body;
-      return parsedData(data);
+      return data;
     } else {
       print(response.statusCode);
       throw 'Problema com a conexão';
