@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:libraria_news/data/models/post.dart';
+import 'package:libraria_news/modules/controller/home_controller.dart';
 import 'components/post_list_view.dart';
 
-class PostsList extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _PostsListState createState() => _PostsListState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _PostsListState extends State<PostsList> {
+class _HomePageState extends State<HomePage> {
+  // Future<dynamic> futurePosts;
 
-  Future<dynamic> futurePosts;
+  HomeController controller = HomeController();
 
   @override
   void initState() {
+    controller.onInit();
     super.initState();
-    futurePosts = PostModel().parsedPages();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: FutureBuilder<dynamic>(
-        future: futurePosts,
-        builder: (context, snapshot){
-          if(!snapshot.hasError) print(snapshot.error);
+      body: FutureBuilder<List<PostModel>>(
+        future: controller.futurePostList,
+        builder: (context, snapshot) {
+          if (!snapshot.hasError) Text('Error');
           return snapshot.hasData
-              ? PostTile(posts: snapshot.data,)
+              ? PostTile(
+                  posts: snapshot.data,
+                )
               : Center(child: CircularProgressIndicator());
         },
       ),

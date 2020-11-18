@@ -1,26 +1,20 @@
+import 'package:libraria_news/data/models/post.dart';
 import 'package:libraria_news/data/providers/post_provider.dart';
 import 'package:meta/meta.dart';
 
 class PostRepository {
+  final PostProvider provider;
 
-final ApiClient apiClient;
+  PostRepository({@required this.provider}) : assert(provider != null);
 
-PostRepository({@required this.apiClient}) : assert(apiClient != null);
+  Future<List<PostModel>> getAllPosts() => provider.getAllPosts();
 
-getAll(){
-  return apiClient.getAll();
-}
-getId(id){
-  return apiClient.getId(id);
-}
-delete(id){
-  return apiClient.delete(id);
-}
-edit(obj){
-  return apiClient.edit( obj );
-}
-add(obj){
-    return apiClient.add( obj );
+  getId(id) => provider.getId(id);
+
+  delete(id) => provider.delete(id);
+
+  edit(obj) => provider.edit(obj);
+
+  add(obj) => provider.add(obj);
 }
 
-}
