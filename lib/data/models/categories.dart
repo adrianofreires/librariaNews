@@ -1,5 +1,6 @@
 import 'dart:convert';
-import 'package:libraria_news/controller/wordpress_data.dart';
+
+import 'package:libraria_news/modules/controller/wordpress_data.dart';
 
 class Categories {
   Categories({

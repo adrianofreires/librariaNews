@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:libraria_news/view/posts_list.dart';
+import 'package:libraria_news/view/home_page.dart';
 
 void main() {
   runApp(MyApp());

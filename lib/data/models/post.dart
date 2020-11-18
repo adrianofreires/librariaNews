@@ -1,21 +1,22 @@
-import 'package:libraria_news/controller/wordpress_data.dart';
 import 'dart:convert';
-import 'package:libraria_news/models/categories.dart';
+
+import 'package:libraria_news/data/models/categories.dart';
+import 'package:libraria_news/modules/controller/wordpress_data.dart';
 
 final String endpoint = 'https://news.libraria.com.br/wp-json/wp/v2/posts?page=';
 final int currentPage = 3;
 
-class Posts {
+class PostModel {
   int id;
   String date, featuredMedia;
   String title;
   dynamic categories;
 
-  Posts({this.id, this.date, this.featuredMedia, this.title, this.categories});
+  PostModel({this.id, this.date, this.featuredMedia, this.title, this.categories});
 
-  factory Posts.fromJson(Map<String, dynamic> json) {
+  factory PostModel.fromJson(Map<String, dynamic> json) {
     print(json['_links']['wp:term'][0]['href']);
-    return Posts(
+    return PostModel(
       id: json['id'] as int,
       title: json['title']['rendered'] as String,
       date: json['date'] as String,
@@ -31,8 +32,8 @@ class Posts {
     return parsedData(parsed);
   }
 
-  List<Posts> parsedData(String responseBody) {
+  List<PostModel> parsedData(String responseBody) {
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-    return (parsed.map<Posts>((json) => Posts.fromJson(json)).toList());
+    return (parsed.map<PostModel>((json) => PostModel.fromJson(json)).toList());
   }
 }

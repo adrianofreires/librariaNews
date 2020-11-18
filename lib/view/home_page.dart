@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'components/post_tile.dart';
-import 'package:libraria_news/models/posts.dart';
+import 'package:libraria_news/data/models/post.dart';
+import 'components/post_list_view.dart';
 
 class PostsList extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class _PostsListState extends State<PostsList> {
   @override
   void initState() {
     super.initState();
-    futurePosts = Posts().parsedPages();
+    futurePosts = PostModel().parsedPages();
   }
   @override
   Widget build(BuildContext context) {
