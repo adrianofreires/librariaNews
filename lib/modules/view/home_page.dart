@@ -24,14 +24,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       body: FutureBuilder<List<PostModel>>(
-        future: controller.futurePostList,
+        future: controller.postList,
         builder: (context, snapshot) {
-          if (!snapshot.hasError) Text('Error');
-          return snapshot.hasData
-              ? PostTile(
-                  posts: snapshot.data,
-                )
-              : Center(child: CircularProgressIndicator());
+          if (!snapshot.hasError)
+            return snapshot.hasData
+                ? PostTile(
+                    posts: snapshot.data,
+                  )
+                : Center(child: CircularProgressIndicator());
+          return Text('Error');
         },
       ),
     );
