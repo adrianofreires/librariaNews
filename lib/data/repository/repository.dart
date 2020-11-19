@@ -11,4 +11,5 @@ class PostRepository {
 
   Future<String> getCategory(PostModel post) => provider.getCategory(post);
 
+  Future<String> getMedia(PostModel post) => provider.getMedia(post);
 }

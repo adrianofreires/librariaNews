@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshot) {
           if (!snapshot.hasError)
             return snapshot.hasData
-                ? PostTile(
+                ? PostList(
                     posts: snapshot.data,
                   )
                 : Center(child: CircularProgressIndicator());

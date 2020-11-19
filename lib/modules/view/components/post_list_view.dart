@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:libraria_news/data/models/post.dart';
 import 'package:libraria_news/modules/view/components/post_card.dart';
 
-class PostTile extends StatelessWidget {
+class PostList extends StatelessWidget {
   final List<PostModel> posts;
 
-  PostTile({
+  PostList({
     Key key,
     this.posts,
   });

@@ -18,11 +18,20 @@ class PostCard extends StatelessWidget {
       color: Colors.black,
       child: Column(
         children: [
-          ClipRRect(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8.0),
-                  topRight: Radius.circular(8.0)),
-              child: Image.network(post.featuredMedia)),
+          FutureBuilder<String>(
+              future: controller.fetchMedia(post),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+                    child: Image.network(snapshot.data),
+                  );
+                }
+              }),
           SizedBox(
             height: 8.0,
           ),
@@ -31,7 +40,7 @@ class PostCard extends StatelessWidget {
             child: Column(
               children: [
                 Row(
-                  children: [
+                  children: <Widget>[
                     FutureBuilder<String>(
                       future: controller.fetchCategory(post),
                       builder: (context, snapshot) {
@@ -39,19 +48,19 @@ class PostCard extends StatelessWidget {
                         return Text(
                           snapshot.data,
                           style: TextStyle(
-                            
                             color: Theme.of(context).accentColor,
                           ),
                         );
                       },
                     ),
                     Text(
-                      post.date,
+                      controller.dateFormat(post.date),
                       style: TextStyle(
                         color: Colors.grey,
                       ),
                     ),
                   ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
                 SizedBox(
                   height: 8.0,
