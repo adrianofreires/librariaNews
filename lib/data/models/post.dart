@@ -13,11 +13,12 @@ class PostModel {
     this.categoryUrl,
   });
 
-  PostModel.fromJson(Map<String, dynamic> json) {
-    this.id = json['id'];
-    this.title = json['title']['rendered'];
-    this.date = json['date'];
-    this.featuredMedia = json['fimg_url'];
-    this.categoryUrl = json['_links']['wp:term'][0]['href'];
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    return PostModel(
+        id: json['id'],
+        title: json['title']['rendered'],
+        date: json['date'],
+        featuredMedia: json['_links']['wp:featuredmedia'][0]['href'],
+        categoryUrl: json['_links']['wp:term'][0]['href']);
   }
 }
