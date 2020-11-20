@@ -9,7 +9,5 @@ class PostRepository {
 
   Future<List<PostModel>> getAllPosts() => provider.getAllPosts();
 
-  Future<String> getCategory(PostModel post) => provider.getCategory(post);
-
-  Future<String> getMedia(PostModel post) => provider.getMedia(post);
+  // Future<String> getCategory(PostModel post) => provider.getCategory(post);
 }

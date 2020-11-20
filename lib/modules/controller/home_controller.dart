@@ -18,18 +18,9 @@ class HomeController {
     return repository.getAllPosts();
   }
 
-  Future<void> fetchPropreties(post) {
-    fetchCategory(post);
-    fetchMedia(post);
-  }
-
-  Future<String> fetchCategory(post) {
-    return repository.getCategory(post);
-  }
-
-  Future<String> fetchMedia(post) {
-    return repository.getMedia(post);
-  }
+  // Future<String> fetchCategory(post) {
+  //   return repository.getCategory(post);
+  // }
 
   String dateFormat(String post) {
     var datePost = DateTime.parse(post);

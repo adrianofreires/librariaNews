@@ -11,27 +11,17 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(post.categoryUrl);
+    print(post.categories);
     return Card(
       margin: EdgeInsets.symmetric(vertical: 9.0, horizontal: 8.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       color: Colors.black,
       child: Column(
         children: [
-          FutureBuilder<String>(
-              future: controller.fetchMedia(post),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
-                    child: Image.network(snapshot.data),
-                  );
-                }
-              }),
+          ClipRRect(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(8.0), topRight: Radius.circular(8.0)),
+            child: Image.network(post.featuredMedia),
+          ),
           SizedBox(
             height: 8.0,
           ),
@@ -41,17 +31,23 @@ class PostCard extends StatelessWidget {
               children: [
                 Row(
                   children: <Widget>[
-                    FutureBuilder<String>(
-                      future: controller.fetchCategory(post),
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) return Text('Carregando categoria');
-                        return Text(
-                          snapshot.data,
-                          style: TextStyle(
-                            color: Theme.of(context).accentColor,
-                          ),
-                        );
-                      },
+                    // FutureBuilder<String>(
+                    //   future: controller.fetchCategory(post),
+                    //   builder: (context, snapshot) {
+                    //     if (!snapshot.hasData) return Text('Carregando categoria');
+                    //     return Text(
+                    //       snapshot.data,
+                    //       style: TextStyle(
+                    //         color: Theme.of(context).accentColor,
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
+                    Text(
+                      post.categories.first,
+                      style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                      ),
                     ),
                     Text(
                       controller.dateFormat(post.date),

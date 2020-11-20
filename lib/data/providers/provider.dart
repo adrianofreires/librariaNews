@@ -26,22 +26,13 @@ class Provider {
     return postList;
   }
 
-  Future<String> getCategory(PostModel post) async {
-    final url = post.categoryUrl;
-    var response = await http.get(url);
-    List jsonResponse = jsonDecode(response.body);
-    Map categoryResponse = jsonResponse[0];
-    String categoryName = categoryResponse['name'];
-    print(categoryName);
-    return categoryName;
-  }
-
-  Future<String> getMedia(PostModel post) async {
-    final url = post.featuredMedia;
-    var response = await http.get(url);
-    Map jsonResponse = jsonDecode(response.body);
-    String mediaUrl = jsonResponse['source_url'];
-    print(mediaUrl);
-    return mediaUrl;
-  }
+  // Future<String> getCategory(PostModel post) async {
+  //   final url = post.categoryUrl;
+  //   var response = await http.get(url);
+  //   List jsonResponse = jsonDecode(response.body);
+  //   Map categoryResponse = jsonResponse[0];
+  //   String categoryName = categoryResponse['name'];
+  //   print(categoryName);
+  //   return categoryName;
+  // }
 }
