@@ -4,19 +4,23 @@ import 'package:libraria_news/data/models/post.dart';
 import 'package:meta/meta.dart';
 
 final String _baseUrl = 'https://news.libraria.com.br/wp-json/wp/v2/posts?page=';
-final int _currentPage = 1;
+int _page = 1;
+
+int get page => _page;
+set page(int value) => _page = value;
 
 class Provider {
   final http.Client httpClient;
   Provider({@required this.httpClient});
+  List<PostModel> postList = [];
 
   Future<List<PostModel>> getAllPosts() async {
-    List<PostModel> postList = [];
     try {
-      var response = await http.get(_baseUrl + _currentPage.toString());
+      var response = await http.get(_baseUrl + page.toString());
       List jsonResponse = json.decode(response.body);
       jsonResponse.forEach((json) {
         postList.add(PostModel.fromJson(json));
+        print(_baseUrl + page.toString());
       });
     } catch (e) {
       print('Algo deu errado: Post Provider');
@@ -26,13 +30,9 @@ class Provider {
     return postList;
   }
 
-  // Future<String> getCategory(PostModel post) async {
-  //   final url = post.categoryUrl;
-  //   var response = await http.get(url);
-  //   List jsonResponse = jsonDecode(response.body);
-  //   Map categoryResponse = jsonResponse[0];
-  //   String categoryName = categoryResponse['name'];
-  //   print(categoryName);
-  //   return categoryName;
-  // }
+  Future<List<PostModel>> getNextPage() async {
+    page++;
+    getAllPosts();
+    return postList;
+  }
 }

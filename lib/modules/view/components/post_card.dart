@@ -13,6 +13,7 @@ class PostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     print(post.categories);
     return Card(
+      elevation: 5,
       margin: EdgeInsets.symmetric(vertical: 9.0, horizontal: 8.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       color: Colors.black,
@@ -31,18 +32,6 @@ class PostCard extends StatelessWidget {
               children: [
                 Row(
                   children: <Widget>[
-                    // FutureBuilder<String>(
-                    //   future: controller.fetchCategory(post),
-                    //   builder: (context, snapshot) {
-                    //     if (!snapshot.hasData) return Text('Carregando categoria');
-                    //     return Text(
-                    //       snapshot.data,
-                    //       style: TextStyle(
-                    //         color: Theme.of(context).accentColor,
-                    //       ),
-                    //     );
-                    //   },
-                    // ),
                     Text(
                       post.categories.first,
                       style: TextStyle(

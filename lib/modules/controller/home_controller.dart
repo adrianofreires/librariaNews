@@ -8,6 +8,7 @@ class HomeController {
   PostRepository repository = PostRepository(provider: Provider(httpClient: http.Client()));
 
   Future<List<PostModel>> postList;
+  List totalPosts;
   String date;
 
   onInit() {
@@ -18,9 +19,9 @@ class HomeController {
     return repository.getAllPosts();
   }
 
-  // Future<String> fetchCategory(post) {
-  //   return repository.getCategory(post);
-  // }
+  nextPage() {
+    return repository.getNextPage();
+  }
 
   String dateFormat(String post) {
     var datePost = DateTime.parse(post);
