@@ -9,10 +9,11 @@ int _page = 1;
 int get page => _page;
 set page(int value) => _page = value;
 
+List<PostModel> postList = [];
+
 class Provider {
   final http.Client httpClient;
   Provider({@required this.httpClient});
-  List<PostModel> postList = [];
 
   Future<List<PostModel>> getAllPosts() async {
     try {
