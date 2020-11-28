@@ -12,7 +12,6 @@ class PostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(post.categories);
     return Card(
       elevation: 5,
       margin: EdgeInsets.symmetric(vertical: 9.0, horizontal: 8.0),
