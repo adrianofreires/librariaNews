@@ -15,10 +15,9 @@ class _PostListState extends State<PostList> {
   void initState() {
     controller.onInit();
     _scrollController.addListener(() {
-      var triggerScrollController = 0.85 * _scrollController.position.maxScrollExtent;
-      if (_scrollController.position.pixels >= triggerScrollController) {
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent) {
         setState(() {
-          controller.postList = controller.nextPage();
+          controller.nextPage();
         });
       }
     });

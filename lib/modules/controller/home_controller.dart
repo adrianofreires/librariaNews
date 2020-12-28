@@ -8,7 +8,6 @@ class HomeController {
   PostRepository repository = PostRepository(provider: Provider(httpClient: http.Client()));
 
   Future<List<PostModel>> postList;
-  List totalPosts;
   String date;
 
   onInit() {
