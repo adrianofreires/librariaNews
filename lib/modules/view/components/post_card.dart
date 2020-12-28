@@ -18,6 +18,7 @@ class PostCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
       color: Colors.black,
       child: GestureDetector(
+        excludeFromSemantics: true,
         onTap: () {
           showDialog(
               context: context,

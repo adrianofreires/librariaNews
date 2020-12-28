@@ -14,14 +14,10 @@ class _PostListState extends State<PostList> {
   @override
   void initState() {
     controller.onInit();
-    print('O error está aqui, voce precisa modificar essa funçao, pois o setState');
-    print('Está chamando o nextPage varias vezes... Logo, aumentando o valor de page');
     _scrollController.addListener(() {
-      var triggerScrollController =
-          0.85 * _scrollController.position.maxScrollExtent;
-      if (_scrollController.position.pixels >= triggerScrollController) {
+      if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent) {
         setState(() {
-          controller.postList = controller.nextPage();
+          controller.nextPage();
         });
       }
     });
